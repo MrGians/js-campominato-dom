@@ -129,14 +129,18 @@ playBtn.addEventListener("click", () => {
         // Verifico se l'utente ha cliccato una Bomba o meno
         if (bombs.includes(parseInt(event.target.innerText))) {
           event.target.classList.add("bomb");
-          console.log("HAI PERSO BOMBA BOMBA BOMBA")
+          console.log("BOMBA, GAME-OVER")
         } else {
           event.target.classList.add("safe");
-          console.log("INCREMENTIAMO IL PUNTEGGIO BRAVO")
+          console.log("SAFE")
           // Aumento di 1 il punteggio utente
           userPoints++;
           userPointsCounter.innerText = `Punteggio: ${userPoints}`;
         }
+
+        // SE l'utente ha raggiunto il punteggio massimo la partita finisce
+        if (userPoints === totalCells - bombs.length) {console.log("HAI VINTO! FINE DEL GIOCO")};
+        
       }
 
     });
