@@ -126,9 +126,17 @@ playBtn.addEventListener("click", () => {
         // Stampo il numero della cella cliccata in console
         console.log("Cell: " + event.target.innerText);
         
-        // Aumento di 1 il punteggio utente
-        userPoints++;
-        userPointsCounter.innerText = `Punteggio: ${userPoints}`;
+        // Verifico se l'utente ha cliccato una Bomba o meno
+        if (bombs.includes(parseInt(event.target.innerText))) {
+          event.target.classList.add("bomb");
+          console.log("HAI PERSO BOMBA BOMBA BOMBA")
+        } else {
+          event.target.classList.add("safe");
+          console.log("INCREMENTIAMO IL PUNTEGGIO BRAVO")
+          // Aumento di 1 il punteggio utente
+          userPoints++;
+          userPointsCounter.innerText = `Punteggio: ${userPoints}`;
+        }
       }
 
     });
@@ -137,7 +145,7 @@ playBtn.addEventListener("click", () => {
     grid.appendChild(cell);
   }
 
-  
+
   // Genero le bombe tramite un ciclo FOR e le inserisco nell'Array Bombs
   const bombs = [];
   for (let i = 1; i <= 16; i++) {
@@ -153,6 +161,7 @@ playBtn.addEventListener("click", () => {
     }
   }
 
+  // Verifico se al click della Cella viene cliccata o meno la Bomba
   
 
 

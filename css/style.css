@@ -32,10 +32,16 @@ body {background-color: #bda162;}
     cursor: pointer;
 }
 
-#grid [class^="cell-"].clicked {
-    background-color: #992017;
-    cursor: not-allowed;
-}
+/* Se la casella è già stata cliccata */
+#grid [class^="cell-"].clicked {cursor: not-allowed;}
+
+/* Se la casella è sicura */
+#grid [class^="cell-"].clicked.safe {background-color: #176999;}
+
+/* Se la casella è una bomba */
+#grid [class^="cell-"].clicked.bomb {background-color: #992017;}
+
+
 
 /* Se viene selezionata l'opzione "Easy" */
 #grid .cell-easy {
