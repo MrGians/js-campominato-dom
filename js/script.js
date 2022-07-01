@@ -119,6 +119,9 @@ playBtn.addEventListener("click", () => {
     // Aggiungo evento al click della Cella
     cell.addEventListener("click", (event) => {
 
+    // Recupero gli elementi <div> cella dalla griglia
+    const cellElements = [...grid.querySelectorAll("div")];  
+
       // Verifico che la cella non sia già stata cliccata
       if (event.target.classList.contains("clicked")) {
         return;
@@ -138,13 +141,6 @@ playBtn.addEventListener("click", () => {
           // Aumento di 1 il punteggio utente
           userPoints++;
           userPointsCounter.innerText = `Punteggio: ${userPoints}`;
-
-          
-
-
-
-
-
         }
 
         // SE l'utente ha raggiunto il punteggio massimo la partita finisce
@@ -163,12 +159,11 @@ playBtn.addEventListener("click", () => {
         else if (event.target.classList.contains("bomb")) {
           
           // Rendo visibili al Game Over le caselle Bomba rimaste sulla griglia
-          const nearbyBombs = [...grid.querySelectorAll("div")];
           for (let i = 1; i <= totalCells; i++) {
             // Confronto ogni numero cella con ogni numero bomba dell'array Bombs
             for (let j = 0; j < bombs.length; j++) {
               // Se il numero della corrisponde al numero bomba diventa rossa
-              if (i === parseInt(bombs[j])) {nearbyBombs[bombs[j]].classList.add("clicked", "bomb");}
+              if (i === bombs[j]) {cellElements[bombs[j] - 1].classList.add("clicked", "bomb");}
             }
           }
 
@@ -204,11 +199,6 @@ playBtn.addEventListener("click", () => {
       console.log(bombs);  
     }
   }
-
-  
-
-
-
 
 
 });
