@@ -1,0 +1,54 @@
+/*********** Header ***********/
+header {background-color: #992017;}
+
+body {background-color: #bda162;}
+
+#game-nav {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+/*********** Campo Minato ***********/
+#minefield #grid {
+    height: 450px;
+    width: 450px;
+    border: 2px solid whitesmoke;
+    box-shadow: 5px 10px 15px black;
+    margin: 50px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#grid [class^="cell-"] {
+    color: white;
+    border: 1px dashed white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#grid [class^="cell-"].clicked {
+    background-color: #992017;
+    cursor: not-allowed;
+}
+
+/* Se viene selezionata l'opzione "Easy" */
+#grid .cell-easy {
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+}
+/* Se viene selezionata l'opzione "Classic" */
+#grid .cell-classic {
+    height: calc(100% / 9);
+    width: calc(100% / 9);
+}
+/* Se viene selezionata l'opzione "Hardcore" */
+#grid .cell-hard {
+    height: calc(100% / 7);
+    width: calc(100% / 7);
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Gianluca Mura">
+    <!-- External Stylesheets Library -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>JS Campo Minato DOM</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav id="game-nav">
+
+                <!-- Logo -->
+                <h1 class="text-white">Campo Minato</h1>
+                <!-- Game Settings -->
+                <div>
+                    <!-- Grid Choice Selected -->
+                    <select name="grid-choice" id="grid-choice">
+                        <option value="easy" selected>Easy</option>
+                        <option value="classic">Classic</option>
+                        <option value="hard">Hardcore</option>
+                    </select>
+                    <!-- "Play" Button -->
+                    <button id="btn-play">Play</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Minefield -->
+    <section id="minefield">
+        <div class="container">
+            <div id="grid" class="d-none">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- JS Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
