@@ -138,11 +138,19 @@ playBtn.addEventListener("click", () => {
           // Aumento di 1 il punteggio utente
           userPoints++;
           userPointsCounter.innerText = `Punteggio: ${userPoints}`;
+
+          
+
+
+
+
+
         }
 
         // SE l'utente ha raggiunto il punteggio massimo la partita finisce
         if (userPoints === totalCells - bombs.length) {
         
+          // Genero messaggio di Vittoria del giocatore
           const gameMessage = document.createElement("div");
           gameMessage.classList.add("game-message");
           gameMessage.innerHTML = `<h2>COMPLIMENTI! HAI VINTO!</h2>`;
@@ -154,6 +162,17 @@ playBtn.addEventListener("click", () => {
         // SE l'utente ha cliccato una bomba la partita finisce
         else if (event.target.classList.contains("bomb")) {
           
+          // Rendo visibili al Game Over le caselle Bomba rimaste sulla griglia
+          const nearbyBombs = [...grid.querySelectorAll("div")];
+          for (let i = 1; i <= totalCells; i++) {
+            // Confronto ogni numero cella con ogni numero bomba dell'array Bombs
+            for (let j = 0; j < bombs.length; j++) {
+              // Se il numero della corrisponde al numero bomba diventa rossa
+              if (i === parseInt(bombs[j])) {nearbyBombs[bombs[j]].classList.add("clicked", "bomb");}
+            }
+          }
+
+          // Genero messaggio di Game-Over
           const gameMessage = document.createElement("div");
           gameMessage.classList.add("game-message");
           gameMessage.innerHTML = `<h2>GAME OVER!</h2>`;
@@ -186,7 +205,6 @@ playBtn.addEventListener("click", () => {
     }
   }
 
-  // Verifico se al click della Cella viene cliccata o meno la Bomba
   
 
 
@@ -194,3 +212,4 @@ playBtn.addEventListener("click", () => {
 
 
 });
+
