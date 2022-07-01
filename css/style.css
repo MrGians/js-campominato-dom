@@ -21,6 +21,8 @@ body {background-color: #bda162;}
     margin: 20px auto 0;
     display: flex;
     flex-wrap: wrap;
+
+    position: relative;
 }
 
 #grid [class^="cell-"] {
@@ -60,7 +62,15 @@ body {background-color: #bda162;}
 }
 
 /* Messaggio finale del gioco */
-#grid h2 {
+#grid .game-message {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0, 0.5);
+}
+#grid .game-message h2 {
     width: 100%;
     line-height: 450px;
     text-align: center;

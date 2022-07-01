@@ -67,6 +67,8 @@ playBtn.addEventListener("click", () => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
+  // Il Bottone "Play" diventa "Ricomincia"
+  playBtn.innerText = "Ricomincia";
 
   // Rendo visibile la griglia
   grid.classList.remove("d-none");
@@ -139,9 +141,27 @@ playBtn.addEventListener("click", () => {
         }
 
         // SE l'utente ha raggiunto il punteggio massimo la partita finisce
-        if (userPoints === totalCells - bombs.length) {grid.innerHTML = `<h2>COMPLIMENTI! HAI VINTO!</h2>`}
+        if (userPoints === totalCells - bombs.length) {
+        
+          const gameMessage = document.createElement("div");
+          gameMessage.classList.add("game-message");
+          gameMessage.innerHTML = `<h2>COMPLIMENTI! HAI VINTO!</h2>`;
+          grid.appendChild(gameMessage);
+
+          // Cambio il testo al Bottone "Play"
+          playBtn.innerText = "Gioca ancora";
+        }
         // SE l'utente ha cliccato una bomba la partita finisce
-        else if (event.target.classList.contains("bomb")) {grid.innerHTML = `<h2>GAME OVER!</h2>`}
+        else if (event.target.classList.contains("bomb")) {
+          
+          const gameMessage = document.createElement("div");
+          gameMessage.classList.add("game-message");
+          gameMessage.innerHTML = `<h2>GAME OVER!</h2>`;
+          grid.appendChild(gameMessage);
+
+          // Cambio il testo al Bottone "Play"
+          playBtn.innerText = "Gioca ancora";
+        }
       }
 
     });
