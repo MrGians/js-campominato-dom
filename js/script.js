@@ -139,8 +139,9 @@ playBtn.addEventListener("click", () => {
         }
 
         // SE l'utente ha raggiunto il punteggio massimo la partita finisce
-        if (userPoints === totalCells - bombs.length) {console.log("HAI VINTO! FINE DEL GIOCO")};
-        
+        if (userPoints === totalCells - bombs.length) {grid.innerHTML = `<h2>COMPLIMENTI! HAI VINTO!</h2>`}
+        // SE l'utente ha cliccato una bomba la partita finisce
+        else if (event.target.classList.contains("bomb")) {grid.innerHTML = `<h2>GAME OVER!</h2>`}
       }
 
     });

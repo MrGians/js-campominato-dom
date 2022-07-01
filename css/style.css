@@ -58,3 +58,11 @@ body {background-color: #bda162;}
     height: calc(100% / 7);
     width: calc(100% / 7);
 }
+
+/* Messaggio finale del gioco */
+#grid h2 {
+    width: 100%;
+    line-height: 450px;
+    text-align: center;
+    color: white;
+}
