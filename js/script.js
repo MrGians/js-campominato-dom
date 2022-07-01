@@ -59,7 +59,14 @@ playBtn.addEventListener("click", () => {
 
     // Restituisco l'elemento creato
     return cell;
-  }
+  };
+
+  // Creo una funzione che generi i numeri che diventeranno le bombe
+  const createBomb = (min, max) => {
+    max++;
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
+
 
   // Rendo visibile la griglia
   grid.classList.remove("d-none");
@@ -129,9 +136,27 @@ playBtn.addEventListener("click", () => {
     // Inserisco le celle all'interno della griglia
     grid.appendChild(cell);
   }
-}
+
+  
+  // Genero le bombe tramite un ciclo FOR e le inserisco nell'Array Bombs
+  const bombs = [];
+  for (let i = 1; i <= 16; i++) {
+
+    // Creo il numero della "Bomba"
+    let bomb = createBomb(1, totalCells);
+
+    // SE il numero Bomba è già presente nell'array, ripeto il giro, altrimenti lo aggiungo
+    if (bombs.includes(bomb))  {i--;} 
+    else {
+      bombs.push(bomb);
+      console.log(bombs);  
+    }
+  }
+
+  
 
 
- 
 
-);
+
+
+});
