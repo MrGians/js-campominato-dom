@@ -116,6 +116,72 @@ playBtn.addEventListener("click", () => {
     }
   }
 
+  // Creo una funzione per mostrare, se presenti, bombe adiacenti alla cella cliccata
+  const showNearbyBombs = (totalCells, bombsList, targetElement, cellElements) => {
+
+    // Controllo la difficoltà scelta per targetizzare correttamente le celle adiacenti
+    let adjacencyNumber = 0;
+
+    switch (totalCells) {
+      case 100:
+        adjacencyNumber = 10;
+        break;
+      case 81:
+        adjacencyNumber = 9;
+        break;
+      case 49:
+        adjacencyNumber = 7;
+        break;
+    }
+
+    // Se sono presenti bombe adiacenti alla cella cliccata ad esse viene aggiunta la classe "nearby-bomb".
+
+    // Controllo la presenza di bombe Sopra e Sotto la cella cliccata
+    if (bombsList.includes((parseInt(targetElement.innerHTML) - adjacencyNumber))) {cellElements[(parseInt(targetElement.innerHTML) - (adjacencyNumber + 1))].classList.add("nearby-bomb")};
+    if (bombsList.includes((parseInt(targetElement.innerHTML) + adjacencyNumber))) {cellElements[(parseInt(targetElement.innerHTML) + (adjacencyNumber - 1))].classList.add("nearby-bomb")};
+
+    // SE la cella cliccata fa parte della prima o ultima colonna della griglia
+    switch (parseInt(targetElement.innerHTML)) {
+
+      // SE la cella cliccata fa parte della prima colonna partendo da sinistra,
+      // controlla la presenza di bombe solo alla sua Destra.
+      case 1:
+      case (1 + adjacencyNumber):
+      case (1 + (adjacencyNumber * 2)):
+      case (1 + (adjacencyNumber * 3)):
+      case (1 + (adjacencyNumber * 4)):
+      case (1 + (adjacencyNumber * 5)):
+      case (1 + (adjacencyNumber * 6)):
+      case (1 + (adjacencyNumber * 7)):
+      case (1 + (adjacencyNumber * 8)):
+      case (1 + (adjacencyNumber * 9)):
+        if (bombsList.includes((parseInt(targetElement.innerHTML) + 1))) {cellElements[(parseInt(targetElement.innerHTML))].classList.add("nearby-bomb")};
+      break;
+
+      // SE la cella cliccata fa parte dell'ultima colonna partendo da sinistra,
+      // controlla la presenza di bombe solo alla sua Sinistra.
+      case adjacencyNumber:
+      case (adjacencyNumber * 2): 
+      case (adjacencyNumber * 3): 
+      case (adjacencyNumber * 4): 
+      case (adjacencyNumber * 5): 
+      case (adjacencyNumber * 6): 
+      case (adjacencyNumber * 7): 
+      case (adjacencyNumber * 8): 
+      case (adjacencyNumber * 9): 
+      case (adjacencyNumber * 10): 
+        if (bombsList.includes((parseInt(targetElement.innerHTML) - 1))) {cellElements[(parseInt(targetElement.innerHTML) - 2)].classList.add("nearby-bomb")};
+      break;
+      
+      // SE la cella cliccata NON fa parte della prima o ultima colonna della griglia,
+      // controlla la presenza di bombe sia alla sua Sinistra che alla sua Destra.
+      default:
+        if (bombsList.includes((parseInt(targetElement.innerHTML) + 1))) {cellElements[(parseInt(targetElement.innerHTML))].classList.add("nearby-bomb")};
+        if (bombsList.includes((parseInt(targetElement.innerHTML) - 1))) {cellElements[(parseInt(targetElement.innerHTML) - 2)].classList.add("nearby-bomb")};
+      break;
+    }
+  }
+
 // ------------------------------------- MINEFIELD GAME ------------------------------------- //
 
   // Il Bottone "Play" diventa "Ricomincia"
@@ -149,6 +215,7 @@ playBtn.addEventListener("click", () => {
       // Recupero gli elementi <div> cella dalla griglia
       const cellElements = [...grid.querySelectorAll("div")];  
 
+
       // SE la cella è già stata cliccata interrompe l'azione bloccando eventuali eventi al click
       if (event.target.classList.contains("clicked")) {return;}
       // // SE la cella non è stata ancora cliccata
@@ -168,8 +235,8 @@ playBtn.addEventListener("click", () => {
           grid.appendChild(hasWon(false));
           // Cambio il testo al Bottone "Play"
           playBtn.innerText = "Gioca ancora";
-
         }
+
         // SE l'utente NON ha cliccato una bomba
         else {
           // Aggiungo la classe "safe" alla cella
@@ -177,6 +244,9 @@ playBtn.addEventListener("click", () => {
           // Incremento di 1 il punteggio dell'utente e stampo il risultato
           userPoints++;
           userPointsCounter.innerText = `Punteggio: ${userPoints}`;
+
+          // Se presenti, mostro possibili bombe adiacenti alla cella "safe" appena cliccata
+          const nearbyBombs = showNearbyBombs(totalCells, bombs, event.target, cellElements);          
         }
 
         // SE l'utente ha raggiunto il punteggio massimo la partita finisce
