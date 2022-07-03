@@ -10,6 +10,21 @@ body {background-color: #bda162;}
     justify-content: space-between;
 }
 
+/*********** Regole di Gioco ***********/
+#modal-game-rules {
+    width: 800px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 2px solid black;
+}
+
 
 
 /*********** Campo Minato ***********/

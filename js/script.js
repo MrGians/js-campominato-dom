@@ -12,6 +12,7 @@
 
 // Variabili Globali DOM
 const playBtn = document.getElementById("btn-play");
+const gameRulesBtn = document.getElementById("btn-game-rules");
 
 
 // Renderizzo la griglia e creo N elementi Cella (in base alla difficoltà scelta) al click del bottone "Play"
@@ -269,3 +270,12 @@ playBtn.addEventListener("click", () => {
   console.log(bombs);
 });
 
+// Mostro / Nascondo le regole di gioco al click del bottone "Regole di Gioco"
+gameRulesBtn.addEventListener("click", () => {
+
+  // Recupero la finestra modale con le regole di gioco
+  const modalGameRules = document.getElementById("modal-game-rules");
+  // Aggiungo / Rimuovo la classe "d-none" al click del bottone
+  modalGameRules.classList.toggle("d-none");
+
+})
